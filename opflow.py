@@ -60,6 +60,7 @@ lk_params = dict(
 )
 print("-----")
 while True:
+    frameId = cap.get(1)
     ret, frame = cap.read()
     if not ret:
         break
@@ -81,6 +82,8 @@ while True:
         if dist(current_center, p[0]) in dic:
             cv2.circle(frame, p[0], 5, (0, 255, 255), -1)
     cv2.imshow("frame", frame)
+    # if frameId % 10 == 0:
+    #     cv2.imwrite("frame_" + str(frameId) + ".png", frame)
     k = cv2.waitKey(25) & 0xFF
     if k == 27:
         break
