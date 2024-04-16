@@ -20,7 +20,7 @@ def dist(point0, point1):
     return np.sqrt(((point1[0] - point0[0]) ** 2 + (point1[1] - point0[1]) ** 2))
 
 
-cap = cv2.VideoCapture('bend_2.gif.mp4')
+cap = cv2.VideoCapture('projectoid2.mp4')
 
 a, _ = cap.read()
 print("----")
@@ -30,7 +30,7 @@ cntr = ()
 dic = {}
 while (1):
     cv2.imshow('image', _)
-    cv2.imwrite("circle_picker.png", _)
+    #cv2.imwrite("circle_picker.png", _)
 
     k = cv2.waitKey(20) & 0xFF
     if k == 27:
@@ -50,9 +50,9 @@ for contour in contours:
         cY = int(M["m01"] / M["m00"])
         cv2.circle(_, (cX, cY), 5, (0, 255, 0), -1)
         cntr = (cX, cY)
-for p in arr:
-    for i in range(-10, 10):
-        dic[dist(cntr, p) + i] = p
+        for p in arr:
+            for i in range(-10, 10):
+                dic[dist(cntr, p) + i] = p
 lk_params = dict(
     winSize=(15, 15),
     maxLevel=5,
@@ -89,8 +89,8 @@ while True:
     f.write(str(frameId) + "\n")
     cv2.imshow("frame", frame)
     #out.write(frame)
-    if frameId % 10 == 0:
-        cv2.imwrite("frame_" + str(frameId) + ".png", frame)
+    # if frameId % 10 == 0:
+    #     cv2.imwrite("frame_" + str(frameId) + ".png", frame)
     k = cv2.waitKey(25) & 0xFF
     if k == 27:
         break
