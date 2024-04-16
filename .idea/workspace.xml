@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: user input points">
-      <change afterPath="$PROJECT_DIR$/bend_2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph_displayer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ty_res.txt" afterDir="false" />
+    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: graph diplayer">
+      <change afterPath="$PROJECT_DIR$/app_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/opflow.py" afterDir="false" />
     </list>
@@ -49,18 +47,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.b_s_task.executor": "Run",
-    "Python.graph_displayer.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.opflow.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/danil/PycharmProjects/heartProj",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.b_s_task.executor&quot;: &quot;Run&quot;,
+    &quot;Python.graph_displayer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.opflow.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/danil/PycharmProjects/heartProj&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -69,7 +67,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.graph_displayer">
+  <component name="RunManager" selected="Python.opflow">
     <configuration name="b_s_task" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="heartProj" />
       <option name="ENV_FILES" value="" />
@@ -160,9 +158,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.opflow" />
         <item itemvalue="Python.graph_displayer" />
         <item itemvalue="Python.b_s_task" />
-        <item itemvalue="Python.opflow" />
       </list>
     </recent_temporary>
   </component>
@@ -198,12 +196,21 @@
       <option name="project" value="LOCAL" />
       <updated>1712661000097</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: graph diplayer">
+      <option name="closed" value="true" />
+      <created>1713183670557</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713183670557</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="feat: user input points" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: user input points" />
+    <MESSAGE value="feat: graph diplayer" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: graph diplayer" />
   </component>
 </project>
