@@ -5,6 +5,7 @@ import os as os
 from matplotlib import pyplot as plt
 
 arr = []
+_ = None
 
 
 #input
@@ -21,53 +22,27 @@ def dist(point0, point1):
 
 
 cap = cv2.VideoCapture('projectoid2.mp4')
-
-a, _ = cap.read()
-print("----")
-cv2.namedWindow('image')
-cv2.setMouseCallback('image', input_point)
-cntr = ()
 dic = {}
-while (1):
-    cv2.imshow('image', _)
-    #cv2.imwrite("circle_picker.png", _)
+size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+frameRate = cap.get(cv2.CAP_PROP_FPS)
+a, _ = cap.read()
 
-    k = cv2.waitKey(20) & 0xFF
-    if k == 27:
-        break
-    elif k == ord('a'):
-        print(mouseX, mouseY)
-img_hsv = cv2.cvtColor(_, cv2.COLOR_BGR2HSV)
-lower_blue = np.array([100, 50, 50])
-upper_blue = np.array([130, 255, 255])
-mask_red = cv2.inRange(img_hsv, lower_blue, upper_blue)
-current_center = (0, 0)
-contours, _ = cv2.findContours(mask_red, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-for contour in contours:
-    M = cv2.moments(contour)
-    if M["m00"] != 0:
-        cX = int(M["m10"] / M["m00"])
-        cY = int(M["m01"] / M["m00"])
-        cv2.circle(_, (cX, cY), 5, (0, 255, 0), -1)
-        cntr = (cX, cY)
-        for p in arr:
-            for i in range(-10, 10):
-                dic[dist(cntr, p) + i] = p
-lk_params = dict(
-    winSize=(15, 15),
-    maxLevel=5,
-    criteria=(cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03),
-)
-print("-----")
-#out = cv2.VideoWriter('output.avi', cv2.VideoWriter_fourcc(*'XVID') , 10.0, (_.shape[0], _.shape[1]))
-f = open("opflow_res.txt", "w")
-f.write("xCent -- yCent -- xP -- yP -- xV -- yV -- t")
-while True:
-    frameId = cap.get(1)
-    ret, frame = cap.read()
-    if not ret:
-        break
-    img_hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+def waitUserInput(_):
+    print("----")
+    cv2.namedWindow('image')
+    cv2.setMouseCallback('image', input_point)
+    cntr = ()
+
+    while (1):
+        cv2.imshow('image', _)
+        cv2.imwrite("circle_picker.png", _)
+        k = cv2.waitKey(20) & 0xFF
+        if k == 27:
+            break
+        elif k == ord('a'):
+            print(mouseX, mouseY)
+    img_hsv = cv2.cvtColor(_, cv2.COLOR_BGR2HSV)
     lower_blue = np.array([100, 50, 50])
     upper_blue = np.array([130, 255, 255])
     mask_red = cv2.inRange(img_hsv, lower_blue, upper_blue)
@@ -78,22 +53,56 @@ while True:
         if M["m00"] != 0:
             cX = int(M["m10"] / M["m00"])
             cY = int(M["m01"] / M["m00"])
-            cv2.circle(frame, (cX, cY), 10, (255, 255, 0), -1)
-            current_center = (cX, cY)
-    nonzero = cv2.findNonZero(mask_red)
-    f.write(str(current_center[0]) + " -- " + str(current_center[1]) + " -- ")
-    for p in nonzero:
-        if dist(current_center, p[0]) in dic:
-            f.write(str(p[0][0]) + " -- " + str(p[0][1]) + " -- ")
-            cv2.circle(frame, p[0], 5, (0, 255, 255), -1)
-    f.write(str(frameId) + "\n")
-    cv2.imshow("frame", frame)
-    #out.write(frame)
-    # if frameId % 10 == 0:
-    #     cv2.imwrite("frame_" + str(frameId) + ".png", frame)
-    k = cv2.waitKey(25) & 0xFF
-    if k == 27:
-        break
-    # Update the previous frame and previous points
-    # old_gray = mask_red.copy()
-    # p0 = good_new.reshape(-1, 1, 2)
+            cv2.circle(_, (cX, cY), 5, (0, 255, 0), -1)
+            cntr = (cX, cY)
+            for p in arr:
+                for i in range(-10, 10):
+                    dic[dist(cntr, p) + i] = p
+
+
+v = []
+
+
+def track():
+    f = open("opflow_res.txt", "w")
+    f.write("xCent -- yCent -- xP -- yP -- xV -- yV -- t")
+    while True:
+        frameId = cap.get(1)
+        ret, frame = cap.read()
+        if not ret:
+            break
+        img_hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        lower_blue = np.array([100, 50, 50])
+        upper_blue = np.array([130, 255, 255])
+        mask_red = cv2.inRange(img_hsv, lower_blue, upper_blue)
+        current_center = (0, 0)
+        contours, _ = cv2.findContours(mask_red, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+        for contour in contours:
+            M = cv2.moments(contour)
+            if M["m00"] != 0:
+                cX = int(M["m10"] / M["m00"])
+                cY = int(M["m01"] / M["m00"])
+                cv2.circle(frame, (cX, cY), 10, (255, 255, 0), -1)
+                current_center = (cX, cY)
+        nonzero = cv2.findNonZero(mask_red)
+        f.write(str(current_center[0]) + " -- " + str(current_center[1]) + " -- ")
+        for p in nonzero:
+            if dist(current_center, p[0]) in dic:
+                f.write(str(p[0][0]) + " -- " + str(p[0][1]) + " -- ")
+                cv2.circle(frame, p[0], 5, (0, 255, 255), -1)
+        f.write(str(frameId) + "\n")
+        cv2.imshow("frame", frame)
+        v.append(frame)
+        k = cv2.waitKey(25) & 0xFF
+        if k == 27:
+            break
+
+
+waitUserInput(_)
+track()
+video = cv2.VideoWriter(
+    filename="result1.mp4", fourcc=cv2.VideoWriter_fourcc(*"mp4v"), fps=frameRate, frameSize=size
+)
+for i in range(len(v)):
+    video.write(v[i])
+video.release()

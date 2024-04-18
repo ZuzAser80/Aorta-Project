@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="last-minute fixes" />
+    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="added new data. The principles need further testing.">
+      <change afterPath="$PROJECT_DIR$/circle_picker.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/result1.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/opflow.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +50,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;Python.b_s_task.executor&quot;: &quot;Run&quot;,
     &quot;Python.graph_displayer.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
@@ -208,14 +214,24 @@
       <option name="project" value="LOCAL" />
       <updated>1713269203820</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added new data. The principles need further testing.">
+      <option name="closed" value="true" />
+      <created>1713274144147</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713274144147</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="initial commit" />
     <MESSAGE value="feat: user input points" />
     <MESSAGE value="feat: graph diplayer" />
     <MESSAGE value="last-minute fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="last-minute fixes" />
+    <MESSAGE value="added new data. The principles need further testing." />
+    <option name="LAST_COMMIT_MESSAGE" value="added new data. The principles need further testing." />
   </component>
 </project>
