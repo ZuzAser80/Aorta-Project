@@ -42,22 +42,8 @@ def waitUserInput(_):
             break
         elif k == ord('a'):
             print(mouseX, mouseY)
-    img_hsv = cv2.cvtColor(_, cv2.COLOR_BGR2HSV)
-    lower_blue = np.array([100, 50, 50])
-    upper_blue = np.array([130, 255, 255])
-    mask_red = cv2.inRange(img_hsv, lower_blue, upper_blue)
-    current_center = (0, 0)
-    contours, _ = cv2.findContours(mask_red, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    for contour in contours:
-        M = cv2.moments(contour)
-        if M["m00"] != 0:
-            cX = int(M["m10"] / M["m00"])
-            cY = int(M["m01"] / M["m00"])
-            cv2.circle(_, (cX, cY), 5, (0, 255, 0), -1)
-            cntr = (cX, cY)
-            for p in arr:
-                for i in range(-10, 10):
-                    dic[dist(cntr, p) + i] = p
+    for p in range(1, len(arr)):
+        dic[dist(arr[0], arr[p])] = arr[p]
 
 
 v = []
@@ -65,7 +51,7 @@ v = []
 
 def track():
     f = open("opflow_res.txt", "w")
-    f.write("xCent -- yCent -- xP -- yP -- xV -- yV -- t")
+    f.write(("xCent -- yCent -- xP -- yP -- xV -- yV -- t" + "\n"))
     while True:
         frameId = cap.get(1)
         ret, frame = cap.read()
@@ -87,7 +73,7 @@ def track():
         nonzero = cv2.findNonZero(mask_red)
         f.write(str(current_center[0]) + " -- " + str(current_center[1]) + " -- ")
         for p in nonzero:
-            if dist(current_center, p[0]) in dic:
+            if dist(arr[0], p[0]) in dic:
                 f.write(str(p[0][0]) + " -- " + str(p[0][1]) + " -- ")
                 cv2.circle(frame, p[0], 5, (0, 255, 255), -1)
         f.write(str(frameId) + "\n")
