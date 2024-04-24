@@ -47,9 +47,11 @@ def waitUserInput(_):
 
 
 v = []
-
+last_point = ()
+written = False
 
 def track():
+    global written, last_point
     f = open("opflow_res.txt", "w")
     f.write(("xCent -- yCent -- xP -- yP -- xV -- yV -- t" + "\n"))
     while True:
@@ -70,15 +72,23 @@ def track():
                 cY = int(M["m01"] / M["m00"])
                 cv2.circle(frame, (cX, cY), 10, (255, 255, 0), -1)
                 current_center = (cX, cY)
+                break
         nonzero = cv2.findNonZero(mask_red)
         f.write(str(current_center[0]) + " -- " + str(current_center[1]) + " -- ")
         for p in nonzero:
             if dist(arr[0], p[0]) in dic:
                 f.write(str(p[0][0]) + " -- " + str(p[0][1]) + " -- ")
+                last_point = p[0]
                 cv2.circle(frame, p[0], 5, (0, 255, 255), -1)
+                written = True
+                break
+        if not written and len(last_point) > 0:
+            f.write(str(last_point[0]) + " -- " + str(last_point[1]) + " -- ")
+            written = True
         f.write(str(frameId) + "\n")
         cv2.imshow("frame", frame)
         v.append(frame)
+        written = False
         k = cv2.waitKey(25) & 0xFF
         if k == 27:
             break
