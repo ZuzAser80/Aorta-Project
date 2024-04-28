@@ -4,29 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="hardcoded some shills">
-      <change afterPath="$PROJECT_DIR$/frame_10.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_100.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_110.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_120.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_130.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_140.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_150.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_160.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_170.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_180.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_190.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_20.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_200.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_30.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_40.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_50.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_60.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_70.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_80.0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frame_90.0.png" afterDir="false" />
+    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: added vectors, intend to use them for finding the pixels. TODO: update the pixel mask to not include circle at the top.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circle_picker.png" beforeDir="false" afterPath="$PROJECT_DIR$/circle_picker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_10.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_10.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_100.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_100.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_110.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_110.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_120.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_120.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_130.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_130.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_140.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_140.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_150.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_150.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_160.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_160.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_170.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_170.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_180.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_180.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_190.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_190.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_20.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_20.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_200.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_200.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_30.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_30.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_40.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_40.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_50.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_50.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_60.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_60.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_70.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_70.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_80.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_80.0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame_90.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_90.0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/opflow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opflow_res.txt" beforeDir="false" afterPath="$PROJECT_DIR$/opflow_res.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result1.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/result1.mp4" afterDir="false" />
@@ -69,19 +69,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.b_s_task.executor&quot;: &quot;Run&quot;,
-    &quot;Python.graph_displayer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.opflow.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/danil/PycharmProjects/heartProj&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.b_s_task.executor": "Run",
+    "Python.graph_displayer.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.opflow.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/danil/PycharmProjects/heartProj",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -267,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713980551567</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: added vectors, intend to use them for finding the pixels. TODO: update the pixel mask to not include circle at the top.">
+      <option name="closed" value="true" />
+      <created>1714238958412</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1714238958412</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -279,6 +287,7 @@
     <MESSAGE value="added new data. The principles need further testing." />
     <MESSAGE value="update" />
     <MESSAGE value="hardcoded some shills" />
-    <option name="LAST_COMMIT_MESSAGE" value="hardcoded some shills" />
+    <MESSAGE value="feat: added vectors, intend to use them for finding the pixels. TODO: update the pixel mask to not include circle at the top." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added vectors, intend to use them for finding the pixels. TODO: update the pixel mask to not include circle at the top." />
   </component>
 </project>

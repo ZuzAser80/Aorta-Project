@@ -1,3 +1,5 @@
+import math
+
 import VectorsPY as vec
 import cv2
 import numpy as np
@@ -51,7 +53,7 @@ def waitUserInput(_):
             print(mouseX, mouseY)
     cntr = ()
     img_hsv = cv2.cvtColor(_, cv2.COLOR_BGR2HSV)
-    lower_blue = np.array([100, 50, 50])
+    lower_blue = np.array([110, 150, 150])
     upper_blue = np.array([130, 255, 255])
     mask_red = cv2.inRange(img_hsv, lower_blue, upper_blue)
     contours, _ = cv2.findContours(mask_red, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
@@ -62,10 +64,11 @@ def waitUserInput(_):
             cY = int(M["m01"] / M["m00"])
             cv2.circle(_, (cX, cY), 10, (255, 255, 0), -1)
             cntr = (cX, cY)
-    print(":;:::", vec.Vector2(cntr[0] + 69, cntr[1] + 69).direction())
+
     for p in range(len(arr)):
-        vector = vec.Vector2(abs(cntr[0] - arr[p][0]), abs(cntr[1] - arr[p][1]))
+        vector = vec.Vector2(cntr[0] - arr[p][0], cntr[1] - arr[p][1])
         vec_mag_dict[vector.magnitude()] = vector.direction()
+        print(":", vector.magnitude(), " :: ", vector.direction())
         vec_dir_dict[vector.direction()] = vector.magnitude()
         for i in range(-10, 10):
             dic[dist(arr[0], arr[p]) + i] = arr[p]
@@ -88,7 +91,7 @@ def track():
         if not ret:
             break
         img_hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        lower_blue = np.array([100, 50, 50])
+        lower_blue = np.array([110, 150, 150])
         upper_blue = np.array([130, 255, 255])
         mask_red = cv2.inRange(img_hsv, lower_blue, upper_blue)
         current_center = (0, 0)
@@ -104,19 +107,16 @@ def track():
         nonzero = cv2.findNonZero(mask_red)
         f.write(str(current_center[0]) + " -- " + str(current_center[1]) + " -- ")
         for p in nonzero:
-            vector = vec.Vector2(abs(current_center[0] - p[0][0]), abs(current_center[1] - p[0][1]))
-            print("curdir:", vector.direction())
-            if any(l - vector.direction() <= 0.1 for l in vec_dir_dict):
+            vector = vec.Vector2(current_center[0] - p[0][0], current_center[1] - p[0][1])
+            #print("curdir:", vector.direction(), "fr:", frameId)
+            if any(abs(key - vector.direction()) < 1 and abs(vector.magnitude() - value) < 10 for key, value in vec_dir_dict.items()):
                 cv2.circle(frame, p[0], 5, (255, 0, 255), -1)
-                print("YIPEE")
-                break
+                #break
         f.write(str(frameId) + "\n")
         cv2.imshow("frame", frame)
         v.append(frame)
-        written = False
-        written1 = False
-        if frameId % 10 == 0:
-            cv2.imwrite("frame_" + str(frameId) + ".png", frame)
+        # if frameId % 10 == 0:
+        #     cv2.imwrite("frame_" + str(frameId) + ".png", frame)
         k = cv2.waitKey(25) & 0xFF
         if k == 27:
             break
