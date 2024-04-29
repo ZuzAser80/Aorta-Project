@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: vectors working, however need further improvement">
+    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="upd: got vectors to work, with some breaking of DRY, even got them working somewhat good">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circle_picker.png" beforeDir="false" afterPath="$PROJECT_DIR$/circle_picker.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frame_10.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_10.0.png" afterDir="false" />
@@ -28,6 +28,7 @@
       <change beforePath="$PROJECT_DIR$/frame_80.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_80.0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frame_90.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_90.0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/opflow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opflow_res.txt" beforeDir="false" afterPath="$PROJECT_DIR$/opflow_res.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result1.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/result1.mp4" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -282,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714302353596</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="upd: got vectors to work, with some breaking of DRY, even got them working somewhat good">
+      <option name="closed" value="true" />
+      <created>1714386862352</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1714386862352</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -296,6 +305,7 @@
     <MESSAGE value="hardcoded some shills" />
     <MESSAGE value="feat: added vectors, intend to use them for finding the pixels. TODO: update the pixel mask to not include circle at the top." />
     <MESSAGE value="feat: vectors working, however need further improvement" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: vectors working, however need further improvement" />
+    <MESSAGE value="upd: got vectors to work, with some breaking of DRY, even got them working somewhat good" />
+    <option name="LAST_COMMIT_MESSAGE" value="upd: got vectors to work, with some breaking of DRY, even got them working somewhat good" />
   </component>
 </project>

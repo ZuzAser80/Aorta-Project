@@ -74,10 +74,10 @@ def waitUserInput(_):
 
 v = []
 last_vector = vec.Vector2(0, 0)
-
+flip1 = False
 
 def track():
-    global last_vector
+    global last_vector, flip1
     f = open("opflow_res.txt", "w")
     f.write(("xCent -- yCent -- xP -- yP -- xV -- yV -- t" + "\n"))
     while True:
@@ -118,17 +118,18 @@ def track():
             #display it
             cv2.circle(frame, nonzero[nearest_index][0], 5, (0, 127, 127), -1)
             #2nd vector: from the middle through the closest blue pixel(to determine the angle of the thing)
-            vector1 = vec.Vector2(current_center[0] - nonzero[nearest_index][0][0],
-                                  current_center[1] - nonzero[nearest_index][0][1]).unitvector()
+            x1 = abs(current_center[0] - nonzero[nearest_index][0][0])
+            y1 = current_center[1] - nonzero[nearest_index][0][1]
+            vector1 = vec.Vector2(x1, y1)
             #display it
             proj1 = (current_center[0] + int(vector1.x * value * (x / abs(x))), current_center[1] + int(vector1.y * value * (x / abs(x))))
-            cv2.circle(frame, proj1, 5, (0, 0, 127), -1)
+            cv2.circle(frame, proj1, 5, (0, 0, 255), -1)
             #looking for the closest to 2nd vector blue pixel(should be final (?))
             distances = np.sqrt((nonzero[:, :, 0] - proj1[0]) ** 2 + (nonzero[:, :, 1] - proj1[1]) ** 2)
             nearest_index_1 = np.argmin(distances)
             # display it
             cv2.circle(frame, nonzero[nearest_index_1][0], 5, (255, 255, 255), -1)
-            #f.write(str(proj[0]) + " -- " + str(proj[1]) + " -- " + str(nonzero[nearest_index][0][0]) + " -- " + str(nonzero[nearest_index][0][1]))
+            f.write(str(nonzero[nearest_index_1][0][0]) + " -- " + str(nonzero[nearest_index_1][0][1]) + " -- ")
         f.write(str(frameId) + "\n")
         cv2.imshow("frame", frame)
         v.append(frame)
