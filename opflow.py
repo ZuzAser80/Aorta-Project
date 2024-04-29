@@ -25,6 +25,7 @@ cap = cv2.VideoCapture('projectoid2.mp4')
 vec_mag_dict = {}
 vec_dir_dict = {}
 flip = False
+flips = {}
 size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 frameRate = cap.get(cv2.CAP_PROP_FPS)
 a, _ = cap.read()
@@ -65,8 +66,8 @@ def waitUserInput(_):
         if len(cntr) > 1 and not cntr[1] == arr[p]:
             i = 1
         vector = vec.Vector2(cntr[i][0] - arr[p][0], (cntr[i][1] - arr[p][1]))
-        if not flip and vector.y > 0:
-            flip = True
+        if vector.y > 0:
+            flips[p] = True
         print(":", vector.magnitude(), " :: ", vector.direction(), ":", vector.y)
         vec_dir_dict[vector.direction()] = vector.magnitude()
         mn = vector.direction()
@@ -74,10 +75,10 @@ def waitUserInput(_):
 
 v = []
 last_vector = vec.Vector2(0, 0)
-flip1 = False
+
 
 def track():
-    global last_vector, flip1
+    global last_vector
     f = open("opflow_res.txt", "w")
     f.write(("xCent -- yCent -- xP -- yP -- xV -- yV -- t" + "\n"))
     while True:
@@ -104,7 +105,7 @@ def track():
         for key, value in vec_dir_dict.items():
             y = value * math.cos(math.radians(key))
             x = value * math.sin(math.radians(key))
-            if flip:
+            if len(flips) > list(vec_dir_dict.keys()).index(key) and flips[list(vec_dir_dict.keys()).index(key)]:
                 y = -y
                 x = -x
             #1st vector from the middle(center)
@@ -121,9 +122,13 @@ def track():
             x1 = abs(current_center[0] - nonzero[nearest_index][0][0])
             y1 = current_center[1] - nonzero[nearest_index][0][1]
             vector1 = vec.Vector2(x1, y1)
+            #setting the magnitude
+            vector1.x *= abs(key)
+            vector1.y *= abs(key)
             #display it
-            proj1 = (current_center[0] + int(vector1.x * value * (x / abs(x))), current_center[1] + int(vector1.y * value * (x / abs(x))))
+            proj1 = (current_center[0] + int(vector1.x * (x / abs(x))), current_center[1] + int(vector1.y * (x / abs(x))))
             cv2.circle(frame, proj1, 5, (0, 0, 255), -1)
+            #TODO: limit by magnitude from center somehow
             #looking for the closest to 2nd vector blue pixel(should be final (?))
             distances = np.sqrt((nonzero[:, :, 0] - proj1[0]) ** 2 + (nonzero[:, :, 1] - proj1[1]) ** 2)
             nearest_index_1 = np.argmin(distances)
