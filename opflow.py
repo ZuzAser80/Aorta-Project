@@ -80,7 +80,10 @@ last_vector = vec.Vector2(0, 0)
 def track():
     global last_vector
     f = open("opflow_res.txt", "w")
-    f.write(("xCent -- yCent -- xP -- yP -- xV -- yV -- t" + "\n"))
+    f.write("xCent -- yCent -- ")
+    for el in range(len(arr)):
+        f.write("P#" + str(el) + "X -- P#" + str(el) + "Y -- ")
+    f.write("t" + "\n")
     while True:
         frameId = cap.get(1)
         ret, frame = cap.read()
@@ -105,7 +108,7 @@ def track():
         for key, value in vec_dir_dict.items():
             y = value * math.cos(math.radians(key))
             x = value * math.sin(math.radians(key))
-            if len(flips) > list(vec_dir_dict.keys()).index(key) and flips[list(vec_dir_dict.keys()).index(key)]:
+            if list(vec_dir_dict.keys()).index(key) in list(flips.keys()) and flips[list(vec_dir_dict.keys()).index(key)]:
                 y = -y
                 x = -x
             #1st vector from the middle(center)
@@ -120,20 +123,20 @@ def track():
             cv2.circle(frame, nonzero[nearest_index][0], 5, (0, 127, 127), -1)
             #2nd vector: from the middle through the closest blue pixel(to determine the angle of the thing)
             x1 = abs(current_center[0] - nonzero[nearest_index][0][0])
-            y1 = current_center[1] - nonzero[nearest_index][0][1]
-            vector1 = vec.Vector2(x1, y1)
+            y1 = abs(current_center[1] - nonzero[nearest_index][0][1])
+            vector1 = vec.Vector2(x1, y1).unitvector()
             #setting the magnitude
-            vector1.x *= abs(key)
-            vector1.y *= abs(key)
+            vector1.x *= abs(value)
+            vector1.y *= abs(value)
             #display it
-            proj1 = (current_center[0] + int(vector1.x * (x / abs(x))), current_center[1] + int(vector1.y * (x / abs(x))))
+            proj1 = (current_center[0] + int(vector1.x * (x/abs(x))), current_center[1] + int(vector1.y * (y/abs(y))))
             cv2.circle(frame, proj1, 5, (0, 0, 255), -1)
-            #TODO: limit by magnitude from center somehow
             #looking for the closest to 2nd vector blue pixel(should be final (?))
             distances = np.sqrt((nonzero[:, :, 0] - proj1[0]) ** 2 + (nonzero[:, :, 1] - proj1[1]) ** 2)
             nearest_index_1 = np.argmin(distances)
             # display it
             cv2.circle(frame, nonzero[nearest_index_1][0], 5, (255, 255, 255), -1)
+            #write to file
             f.write(str(nonzero[nearest_index_1][0][0]) + " -- " + str(nonzero[nearest_index_1][0][1]) + " -- ")
         f.write(str(frameId) + "\n")
         cv2.imshow("frame", frame)
