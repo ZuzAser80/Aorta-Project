@@ -14,9 +14,8 @@ def open_vid():
 
 
 def display_image(file_path):
-    global kill
     status_label.config(text=f"Загруженный файл: {file_path}")
-    opflow.track_video(file_path, entry_field.get(), True)
+    opflow.track_video(file_path, entry_field.get(), True, True, 1)
 
 
 root = tk.Tk()
