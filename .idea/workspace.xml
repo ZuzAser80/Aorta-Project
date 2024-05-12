@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: app :: fix: allowed leeway">
-      <change afterPath="$PROJECT_DIR$/ai/ai_splitter_test.py" afterDir="false" />
+    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: ability to auto-pick feature points">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circle_picker.png" beforeDir="false" afterPath="$PROJECT_DIR$/circle_picker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auto_picker.png" beforeDir="false" afterPath="$PROJECT_DIR$/auto_picker.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frame_10.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_10.0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frame_100.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_100.0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frame_110.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_110.0.png" afterDir="false" />
@@ -30,8 +28,8 @@
       <change beforePath="$PROJECT_DIR$/frame_80.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_80.0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frame_90.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_90.0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/opflow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/result.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectoid2_res.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/projectoid2_res.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectoid2_res.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projectoid2_res.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +91,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.app_test">
+  <component name="RunManager" selected="Python.opflow">
     <configuration name="app_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="heartProj" />
       <option name="ENV_FILES" value="" />
@@ -206,8 +204,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.app_test" />
         <item itemvalue="Python.opflow" />
+        <item itemvalue="Python.app_test" />
         <item itemvalue="Python.graph_displayer" />
         <item itemvalue="Python.b_s_task" />
       </list>
@@ -349,7 +347,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714497873184</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat: ability to auto-pick feature points">
+      <option name="closed" value="true" />
+      <created>1715444964709</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1715444964709</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -368,6 +374,7 @@
     <MESSAGE value="feat: now works for &gt;1 points" />
     <MESSAGE value="feat: now accounts for magnitude of the original vector. Yipee, i guess..." />
     <MESSAGE value="feat: app :: fix: allowed leeway" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: app :: fix: allowed leeway" />
+    <MESSAGE value="feat: ability to auto-pick feature points" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: ability to auto-pick feature points" />
   </component>
 </project>

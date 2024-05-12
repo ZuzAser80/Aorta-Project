@@ -95,8 +95,8 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
                     if vector.y > 0:
                         x = -x
                         y = -y
-                    point = (int(current_center[0] + (x / (l + 1))), int(current_center[1] + (y / (l + 1))))
-                    cv2.circle(imCrop, point, 10, (255, 0, 255), -1)
+                    point = (int(current_center[0] + ((x * (l+1)) / points_count)), int(current_center[1] + ((y * (l+1)) / points_count)))
+                    cv2.circle(imCrop, point, 2, (255, 0, 255), -1)
                     arr.append((point[0] + old_center[0] - current_center[0], point[1] + old_center[1] - current_center[1]))
 
             cv2.imshow("Image", imCrop)
@@ -233,4 +233,4 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
     return True
 
 
-track_video("projectoid2.mp4", "projectoid2_res", True, True)
+track_video("projectoid2.mp4", "projectoid2_res", True, True, 3)
