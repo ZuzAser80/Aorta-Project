@@ -233,4 +233,4 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
     return True
 
 
-track_video("projectoid2.mp4", "projectoid2_res", True, True, 3)
+#track_video("projectoid2.mp4", "projectoid2_res", True, True, 4)
