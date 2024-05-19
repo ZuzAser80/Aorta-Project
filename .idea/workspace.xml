@@ -4,36 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="fix: evenly spaced points">
+    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: app update">
       <change afterPath="$PROJECT_DIR$/.mp4" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auto_picker.png" beforeDir="false" afterPath="$PROJECT_DIR$/auto_picker.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_10.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_10.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_100.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_100.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_110.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_110.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_120.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_120.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_130.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_130.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_140.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_140.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_150.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_150.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_160.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_160.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_170.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_170.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_180.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_180.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_190.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_190.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_20.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_20.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_200.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_200.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_30.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_30.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_40.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_40.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_50.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_50.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_60.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_60.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_70.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_70.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_80.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_80.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame_90.0.png" beforeDir="false" afterPath="$PROJECT_DIR$/frame_90.0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/opflow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectoid2_res.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/projectoid2_res.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectoid2_res.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projectoid2_res.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -367,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715514456464</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="feat: app update">
+      <option name="closed" value="true" />
+      <created>1715839584526</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1715839584526</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -388,6 +371,7 @@
     <MESSAGE value="feat: app :: fix: allowed leeway" />
     <MESSAGE value="feat: ability to auto-pick feature points" />
     <MESSAGE value="fix: evenly spaced points" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: evenly spaced points" />
+    <MESSAGE value="feat: app update" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: app update" />
   </component>
 </project>
