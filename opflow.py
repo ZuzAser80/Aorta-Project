@@ -129,7 +129,7 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
 
     def track():
         f = open(output_name + ".txt", "w")
-        f.write("xCent -- yCent -- ")
+        f.write("CentDist -- xCent -- yCent -- ")
         for el in range(len(arr)):
             f.write("P#" + str(el) + "X -- P#" + str(el) + "Y -- ")
         f.write("t" + "\n")
@@ -144,6 +144,7 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
             upper_blue = np.array([130, 255, 255])
             mask_red = cv2.inRange(img_hsv, lower_blue, upper_blue)
             current_center = (0, 0)
+            centers = []
             contours, _ = cv2.findContours(mask_red, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
             for contour in contours:
                 M = cv2.moments(contour)
@@ -151,11 +152,17 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
                     cX = int(M["m10"] / M["m00"])
                     cY = int(M["m01"] / M["m00"])
                     cv2.circle(frame, (cX, cY), 10, (255, 255, 0), -1)
-                    current_center = (cX, cY)
-                    break
+                    if len(centers) == 0:
+                        current_center = (cX, cY)
+                    centers.append((cX, cY))
             nonzero = cv2.findNonZero(mask_red)
 
             # looking for closest to the original vector's end blue pixel
+
+            if len(centers) >= 2:
+                f.write((str(int(dist(centers[0], centers[1]))) + " -- "))
+            else:
+                f.write("0 -- ")
 
             f.write(str(current_center[0]) + " -- " + str(current_center[1]) + " -- ")
             for key, value in vec_dir_dict.items():
