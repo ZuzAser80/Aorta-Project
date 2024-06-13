@@ -12,7 +12,8 @@ def dist(point0, point1):
     return np.sqrt(((point1[0] - point0[0]) ** 2 + (point1[1] - point0[1]) ** 2))
 
 
-def track_video(filename: str, output_name: str, show_video: bool, place_points_auto: bool = True, points_count: int = 1) -> bool:
+def track_video(filename: str, output_name: str, show_video: bool, place_points_auto: bool = True,
+                points_count: int = 1) -> bool:
     cap = cv2.VideoCapture(filename)
     vec_dir_dict = {}
     flips = {}
@@ -95,9 +96,11 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
                     if vector.y > 0:
                         x = -x
                         y = -y
-                    point = (int(current_center[0] + ((x * (l+1)) / points_count)), int(current_center[1] + ((y * (l+1)) / points_count)))
+                    point = (int(current_center[0] + ((x * (l + 1)) / points_count)),
+                             int(current_center[1] + ((y * (l + 1)) / points_count)))
                     cv2.circle(imCrop, point, 2, (255, 0, 255), -1)
-                    arr.append((point[0] + old_center[0] - current_center[0], point[1] + old_center[1] - current_center[1]))
+                    arr.append(
+                        (point[0] + old_center[0] - current_center[0], point[1] + old_center[1] - current_center[1]))
 
             cv2.imshow("Image", imCrop)
             cv2.imwrite("auto_picker.png", imCrop)
@@ -158,7 +161,8 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
             nonzero = cv2.findNonZero(mask_red)
 
             # looking for closest to the original vector's end blue pixel
-
+            if len(centers) == 0:
+                continue
             if len(centers) >= 2:
                 f.write((str(int(dist(centers[0], centers[1]))) + " -- "))
             else:
@@ -238,6 +242,5 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
         video.write(v[i])
     video.release()
     return True
-
 
 #track_video("projectoid2.mp4", "projectoid2_res", True, True, 4)
