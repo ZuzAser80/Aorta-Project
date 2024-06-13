@@ -1,0 +1,4 @@
+train: /Users/danil/PycharmProjects/heartProj/data/YOLODataset/images/train
+val: /Users/danil/PycharmProjects/heartProj/data/YOLODataset/images/val
+nc: 1
+names: ["valve"]
