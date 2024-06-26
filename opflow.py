@@ -131,10 +131,10 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
     v = []
 
     def track():
-        f = open(output_name + ".txt", "w")
-        f.write("CentDist -- xCent -- yCent -- ")
+        f = open(output_name + ".csv", "w")
+        f.write("CentDist,xCent,yCent,")
         for el in range(len(arr)):
-            f.write("P#" + str(el) + "X -- P#" + str(el) + "Y -- ")
+            f.write("P#" + str(el) + "X,P#" + str(el) + "Y,")
         f.write("t" + "\n")
         while True:
             frameId = cap.get(1)
@@ -164,11 +164,11 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
             if len(centers) == 0:
                 continue
             if len(centers) >= 2:
-                f.write((str(int(dist(centers[0], centers[1]))) + " -- "))
+                f.write((str(int(dist(centers[0], centers[1]))) + ","))
             else:
-                f.write("0 -- ")
+                f.write("0,")
 
-            f.write(str(current_center[0]) + " -- " + str(current_center[1]) + " -- ")
+            f.write(str(current_center[0]) + "," + str(current_center[1]) + ",")
             for key, value in vec_dir_dict.items():
 
                 y = value * math.cos(math.radians(key))
@@ -218,7 +218,7 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
                 cv2.circle(frame, true_point, 5, (255, 255, 255), -1)
 
                 #write to file
-                f.write(str(true_point[0]) + " -- " + str(true_point[1]) + " -- ")
+                f.write(str(true_point[0]) + "," + str(true_point[1]) + ",")
             f.write(str(frameId) + "\n")
             if show_video:
                 cv2.imshow("frame", frame)

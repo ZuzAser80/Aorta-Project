@@ -16,6 +16,7 @@ points = {}
 vid_x = vid.get(cv2.CAP_PROP_FRAME_WIDTH)  # 1280
 vid_y = vid.get(cv2.CAP_PROP_FRAME_HEIGHT)  # 720
 i = 0
+arr = []
 with open(file, 'r') as f:
     for line in f:
         line = line.rstrip()
@@ -25,8 +26,20 @@ with open(file, 'r') as f:
             i += 1
 img_res = Image.new("RGB", (int(vid_x), int(vid_y)), "black")
 img_res.save("img_res.png")
-img_res = cv2.imread("img_res.png")
-os.remove("img_res.png")
 for index, cords in points.items():
+    img_res = cv2.imread("img_res.png")
+    #os.remove("img_res.png")
     cv2.circle(img_res, cords, 5, (255, 255, 255), -1)
-plt.imshow(img_res), plt.show()
+    for index1, cords1 in points.items():
+        if index1 == index:
+            break
+        cv2.circle(img_res, cords1, 5, (255, 255, 255), -1)
+    arr.append(img_res)
+video = cv2.VideoWriter(
+        filename="graph.mp4", fourcc=cv2.VideoWriter_fourcc(*"mp4v"), fps=5,
+        frameSize=(int(vid_x), int(vid_y))
+    )
+for i in range(len(arr)):
+    print(":::", i)
+    video.write(arr[i])
+video.release()

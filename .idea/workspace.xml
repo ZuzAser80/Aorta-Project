@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: ai">
-      <change afterPath="$PROJECT_DIR$/result_video.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yolov8m-seg.pt" afterDir="false" />
+    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: ai #1">
+      <change afterPath="$PROJECT_DIR$/graph.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graph_res.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_res.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/matmod.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ai_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph_displayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph_displayer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/opflow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/result_video.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/result_video.mp4" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +77,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ai_test">
+  <component name="RunManager" selected="Python.graph_displayer">
     <configuration name="ai_splitter_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="heartProj" />
       <option name="ENV_FILES" value="" />
@@ -205,9 +212,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.ai_test" />
-        <item itemvalue="Python.app_test" />
         <item itemvalue="Python.graph_displayer" />
+        <item itemvalue="Python.app_test" />
+        <item itemvalue="Python.ai_test" />
         <item itemvalue="Python.ai_splitter_test" />
         <item itemvalue="Python.opflow" />
       </list>
@@ -413,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718294181587</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="feat: ai #1">
+      <option name="closed" value="true" />
+      <created>1718294420225</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1718294420225</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -440,6 +455,7 @@
     <MESSAGE value="feat: bullshit ui" />
     <MESSAGE value="feat: bullshit ui semi-completed" />
     <MESSAGE value="feat: ai" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: ai" />
+    <MESSAGE value="feat: ai #1" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: ai #1" />
   </component>
 </project>

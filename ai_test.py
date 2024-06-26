@@ -35,7 +35,7 @@ while True:
     model = YOLO("runs/segment/train2/weights/best.pt")
     valves = model.predict(source=frame, show=False, save=False, show_labels=True, show_conf=True,
                            conf=0.35, save_txt=False, save_crop=False, line_width=2)
-
+    pts = []
     for result in valves:
         # get array results
         if type(result) is None or not result:
@@ -57,14 +57,26 @@ while True:
         height, width = frame.shape[:2]
         blank_image = numpy.zeros((height, width, 3), numpy.uint8)
         for pt in nz:
-            cv2.circle(blank_image, (int(pt[0][0] * (1280/640)), int(pt[0][1] *
-                                     (720/380))), 1, (255, 0, 0), -1)
+            pts.append((int(pt[0][0] * (1280/640)), int(pt[0][1] *
+                                     (720/380))))
+            # cv2.circle(img, (int(pt[0][0] * (1280/640)), int(pt[0][1] *
+            #                          (720/380))), 1, (255, 0, 0), -1)
+        #arr.append(img)
         #blank_image - mask /w blue color
         #
     # orig = cv2.imread("runs/segment/predict/image0.jpg")
-    # print("frame:", frameId, "/", int(cap.get(cv2.CAP_PROP_FRAME_COUNT)), ":", orig.shape, ":", blank_image.shape)
-    res_img = cv2.bitwise_or(frame, blank_image, mask=None)
-    arr.append(res_img)
+    print("frame:", frameId, "/", int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
+    #res_img = cv2.bitwise_or(frame, blank_image, mask=None)
+    for p in pts:
+        cv2.circle(frame, p, 3, (255, 0, 0), -1)
+    #res_img = img.copy()
+    blank_image = cv2.cvtColor(blank_image, cv2.COLOR_RGB2BGR)
+    #nz_0 =
+    #print(blank_image.nonzero())
+    # for p in nz_0:
+    #     print("::::", p)
+    #     cv2.circle(res_img, p, 5, (255, 0, 0), -1)
+    arr.append(frame)
     # shutil.rmtree("runs/segment/predict")
 print("----------")
 video = cv2.VideoWriter(filename="result_video.mp4", fourcc=cv2.VideoWriter_fourcc(*"mp4v"), fps=frameRate,
