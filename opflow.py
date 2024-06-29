@@ -4,14 +4,18 @@ import VectorsPY as vec
 import cv2
 import numpy as np
 
+
+#DONE BY ZUZ8 IN 2023-2024
 arr = []
 _ = None
 
 
+#Дистанция между 2 точками
 def dist(point0, point1):
     return np.sqrt(((point1[0] - point0[0]) ** 2 + (point1[1] - point0[1]) ** 2))
 
 
+#Главная функция отслеживания
 def track_video(filename: str, output_name: str, show_video: bool, place_points_auto: bool = True,
                 points_count: int = 1) -> bool:
     cap = cv2.VideoCapture(filename)
@@ -21,6 +25,7 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
     frameRate = cap.get(cv2.CAP_PROP_FPS)
     a, _ = cap.read()
 
+    #Считываем ввод точек (deprecated)
     def input_point(event, x, y, flags, param):
         global mouseX, mouseY
         if event == cv2.EVENT_LBUTTONDOWN:
@@ -28,6 +33,7 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
             arr.append((x, y))
             mouseX, mouseY = x, y
 
+    #Находим центр синего силуэта на фото img
     def get_current_center(img, color=(255, 255, 0)):
         cntr = []
         img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
@@ -44,9 +50,11 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
                 cv2.circle(img, (cX, cY), 10, color, -1)
         return cntr
 
+    #Ждем ввод от пользователя
     def waitUserInput(_):
         print("----")
 
+        #Если расставляем точки автоматически
         if place_points_auto:
             #prelude
             r = cv2.selectROI(_)
@@ -61,7 +69,7 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
             current_center = get_current_center(imCrop)[0]
             k = vec.Vector2(old_center[0] - current_center[0], old_center[1] - current_center[1])
 
-            # display it
+            # Выводим изображение
             cv2.circle(imCrop, current_center, 10, (255, 255, 255), -1)
 
             cnts = cv2.findContours(mask_red, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -72,7 +80,7 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
             #left, right, top, bottom
             extremes = [tuple(c[c[:, :, 0].argmin()][0]), tuple(c[c[:, :, 0].argmax()][0]),
                         tuple(c[c[:, :, 1].argmin()][0]), tuple(c[c[:, :, 1].argmax()][0])]
-
+            #Самые дальние синие точки
             print("extremes:", extremes)
 
             dists = {}
@@ -102,11 +110,13 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
                     arr.append(
                         (point[0] + old_center[0] - current_center[0], point[1] + old_center[1] - current_center[1]))
 
+            #Показываем и запоминаем точки
             cv2.imshow("Image", imCrop)
             cv2.imwrite("auto_picker.png", imCrop)
             cv2.waitKey(0)
 
         else:
+            #Если пользователь сам расставляет точки (КРАЙНЕ НЕ РЕКОМЕНДУЕТСЯ)
             cv2.namedWindow("windowName")
             cv2.setMouseCallback("windowName", input_point)
             while 1:
@@ -130,18 +140,22 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
 
     v = []
 
+    #Главная функция отслеживания
     def track():
+        #Создаем файл для вывода результатов
         f = open(output_name + ".csv", "w")
         f.write("CentDist,xCent,yCent,")
         for el in range(len(arr)):
             f.write("P#" + str(el) + "X,P#" + str(el) + "Y,")
         f.write("t" + "\n")
+        #Обрабатываем видео покадрово
         while True:
             frameId = cap.get(1)
             ret, __ = cap.read()
             if not ret:
                 break
             frame = __.copy()
+            #Маска по цвету
             img_hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
             lower_blue = np.array([110, 150, 150])
             upper_blue = np.array([130, 255, 255])
@@ -149,6 +163,7 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
             current_center = (0, 0)
             centers = []
             contours, _ = cv2.findContours(mask_red, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+            #Находим центры синих силуэтов
             for contour in contours:
                 M = cv2.moments(contour)
                 if M["m00"] != 0:
@@ -158,9 +173,10 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
                     if len(centers) == 0:
                         current_center = (cX, cY)
                     centers.append((cX, cY))
+            # Находим все синие пиксели
             nonzero = cv2.findNonZero(mask_red)
 
-            # looking for closest to the original vector's end blue pixel
+            # Если нету центров - пропускаем итерацию
             if len(centers) == 0:
                 continue
             if len(centers) >= 2:
@@ -169,55 +185,56 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
                 f.write("0,")
 
             f.write(str(current_center[0]) + "," + str(current_center[1]) + ",")
+            #Перебираем все запомненные векторы
             for key, value in vec_dir_dict.items():
-
+                #Считаем значения, на которых бы лежал конец вектора
                 y = value * math.cos(math.radians(key))
                 x = value * math.sin(math.radians(key))
-
+                #
                 if list(vec_dir_dict.keys()).index(key) in list(flips.keys()) and flips[
                     list(vec_dir_dict.keys()).index(key)]:
                     y = -y
                     x = -x
 
-                #1st vector from the middle(center)
+                #1 вектор, отложенный из центра
                 vector = vec.Vector2(x, y)
                 proj = (current_center[0] + int(vector.x), current_center[1] + int(vector.y))
-                #display it
+                #Отображаем
                 cv2.circle(frame, proj, 5, (0, 127, 0), -1)
 
-                #looking for closest to the original vector's end blue pixel
+                #Ищем самый близкий к 1 вектору синий пиксель
                 distances = np.sqrt((nonzero[:, :, 0] - proj[0]) ** 2 + (nonzero[:, :, 1] - proj[1]) ** 2)
                 nearest_index = np.argmin(distances)
-                #display it
+                #отображаем
                 cv2.circle(frame, nonzero[nearest_index][0], 5, (0, 127, 127), -1)
 
-                #2nd vector: from the middle through the closest blue pixel(to determine the angle of the thing)
+                #2ой вектор - из центра через самый близкий к 1 вектору синий пиксель (определяем угол)
                 x1 = abs(current_center[0] - nonzero[nearest_index][0][0])
                 y1 = abs(current_center[1] - nonzero[nearest_index][0][1])
 
                 vector1 = vec.Vector2(x1, y1).unitvector()
-                #setting the magnitude
+                #Теперь увеличиваем длину 2 вектора до длины оригинального вектора
                 vector1.x *= abs(value)
                 vector1.y *= abs(value)
 
-                #display it
-                #print("shoebill:", vector1.x, x, (x / abs(x)))
+                #Отображаем
                 proj1 = (
                     current_center[0] + int(vector1.x * (x / abs(x))),
                     current_center[1] + int(vector1.y * (y / abs(y))))
                 cv2.circle(frame, proj1, 5, (0, 0, 255), -1)
 
-                #looking for the closest to 2nd vector blue pixel(should be final (?))
+                #Теперь ищем ближайший к концу 2 вектора синий пиксель
                 distances = np.sqrt((nonzero[:, :, 0] - proj1[0]) ** 2 + (nonzero[:, :, 1] - proj1[1]) ** 2)
                 nearest_index_1 = np.argmin(distances)
 
-                # display it
+                #Отображаем
                 true_point = nonzero[nearest_index_1][0]
+                #Погрешность в <10 пикселей
                 if dist(nonzero[nearest_index_1][0], proj1) <= 10:
                     true_point = proj1
                 cv2.circle(frame, true_point, 5, (255, 255, 255), -1)
 
-                #write to file
+                #Записываем в файл
                 f.write(str(true_point[0]) + "," + str(true_point[1]) + ",")
             f.write(str(frameId) + "\n")
             if show_video:
@@ -229,18 +246,19 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
             if k == 27:
                 break
 
+    #Вызовы функций
     waitUserInput(_)
     cv2.destroyAllWindows()
     track()
     cv2.destroyAllWindows()
-    #wrapping into video
+    #Оборачиваем кадры в видео
     video = cv2.VideoWriter(
         filename=(output_name + ".mp4"), fourcc=cv2.VideoWriter_fourcc(*"mp4v"), fps=frameRate,
         frameSize=size
     )
     for i in range(len(v)):
         video.write(v[i])
+    #Записываем видео
     video.release()
     return True
 
-#track_video("projectoid2.mp4", "projectoid2_res", True, True, 4)

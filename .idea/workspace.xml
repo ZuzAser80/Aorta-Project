@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: ai #1">
-      <change afterPath="$PROJECT_DIR$/graph.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graph_res.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img_res.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/matmod.py" afterDir="false" />
+    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: ai #2 and .csv">
+      <change afterPath="$PROJECT_DIR$/app_converter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ai_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph_displayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph_displayer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/opflow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result_video.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/result_video.mp4" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -428,7 +423,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718294420225</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="feat: ai #2 and .csv">
+      <option name="closed" value="true" />
+      <created>1719390285191</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1719390285191</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -456,6 +459,7 @@
     <MESSAGE value="feat: bullshit ui semi-completed" />
     <MESSAGE value="feat: ai" />
     <MESSAGE value="feat: ai #1" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: ai #1" />
+    <MESSAGE value="feat: ai #2 and .csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: ai #2 and .csv" />
   </component>
 </project>
