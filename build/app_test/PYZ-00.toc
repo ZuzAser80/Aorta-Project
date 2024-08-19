@@ -1,0 +1,1 @@
+('/Users/danil/PycharmProjects/heartProj/build/app_test/PYZ-00.pyz', [])

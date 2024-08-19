@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="feat: ai #2 and .csv">
-      <change afterPath="$PROJECT_DIR$/app_converter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/icon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/opflow.py" afterDir="false" />
-    </list>
+    <list default="true" id="7de0a053-38ad-4c0f-a4fd-5b6584303cf5" name="Changes" comment="upd" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,7 +67,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.graph_displayer">
+  <component name="RunManager" selected="Python.app_test">
     <configuration name="ai_splitter_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="heartProj" />
       <option name="ENV_FILES" value="" />
@@ -207,8 +202,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.graph_displayer" />
         <item itemvalue="Python.app_test" />
+        <item itemvalue="Python.graph_displayer" />
         <item itemvalue="Python.ai_test" />
         <item itemvalue="Python.ai_splitter_test" />
         <item itemvalue="Python.opflow" />
@@ -431,12 +426,27 @@
       <option name="project" value="LOCAL" />
       <updated>1719390285191</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="getting it ready to be ported to .exe">
+      <option name="closed" value="true" />
+      <created>1719672166932</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1719672166932</updated>
+    </task>
+    <task id="LOCAL-00027" summary="upd">
+      <option name="closed" value="true" />
+      <created>1724063234243</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1724063234243</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="initial commit" />
     <MESSAGE value="feat: user input points" />
     <MESSAGE value="feat: graph diplayer" />
     <MESSAGE value="last-minute fixes" />
@@ -460,6 +470,8 @@
     <MESSAGE value="feat: ai" />
     <MESSAGE value="feat: ai #1" />
     <MESSAGE value="feat: ai #2 and .csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: ai #2 and .csv" />
+    <MESSAGE value="getting it ready to be ported to .exe" />
+    <MESSAGE value="upd" />
+    <option name="LAST_COMMIT_MESSAGE" value="upd" />
   </component>
 </project>
