@@ -1,9 +1,9 @@
 import math
+import random
 
 import VectorsPY as vec
 import cv2
 import numpy as np
-
 
 #DONE BY ZUZ8 IN 2023-2024
 arr = []
@@ -137,8 +137,11 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
             vector = vec.Vector2(arr[p][0], arr[p][1])
             if vector.x > 0:
                 flips[p] = True
-            print(":", int(vector.x), " :: ", int(vector.y), ":")
-            vec_dir_dict[vector.direction()] = vector.magnitude()
+            print(":", vector.direction(), " :: ", vector.magnitude(), ":")
+            if vector.direction() not in vec_dir_dict.keys():
+                vec_dir_dict[vector.direction()] = vector.magnitude()
+            else:
+                vec_dir_dict[vector.direction() + random.uniform(-0.1, 0.1)] = vector.magnitude()
 
     v = []
 
@@ -146,9 +149,9 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
     def track():
         #Создаем файл для вывода результатов
         f = open(output_name + ".csv", "w")
-        f.write("CentDist,xCent,yCent,")
+        f.write("Центр X,Центр Y,")
         for el in range(len(arr)):
-            f.write("P#" + str(el) + "X,P#" + str(el) + "Y,")
+            f.write("Точка № " + str(el) + " X,Точка № " + str(el) + " Y,")
         f.write("t" + "\n")
         #Обрабатываем видео покадрово
         while True:
@@ -171,7 +174,7 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
                 if M["m00"] != 0:
                     cX = int(M["m10"] / M["m00"])
                     cY = int(M["m01"] / M["m00"])
-                    cv2.circle(frame, (cX, cY), 10, (255, 255, 0), -1)
+                    cv2.circle(frame, (cX, cY), 5, (255, 255, 0), -1)
                     if len(centers) == 0:
                         current_center = (cX, cY)
                     centers.append((cX, cY))
@@ -181,15 +184,32 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
             # Если нету центров - пропускаем итерацию
             # if len(centers) == 0:
             #     continue
-            if len(centers) >= 2:
-                f.write((str(int(dist(centers[0], centers[1]))) + ","))
-            else:
-                f.write("0,")
+            # Cent distance / Дистанция между центрами если надо
+            # if len(centers) >= 2:
+            #     f.write((str(int(dist(centers[0], centers[1]))) + ","))
+            # else:
+            #     f.write("0,")
 
             f.write(str(current_center[0]) + "," + str(current_center[1]) + ",")
             #Перебираем все запомненные векторы
+            prevpair = None
             for key, value in vec_dir_dict.items():
+                # if prevpair is not None:
+                #     new_dir = prevpair[0] - key
+                #     y = value * math.cos(math.radians(new_dir))
+                #     x = value * math.sin(math.radians(new_dir))
+                #     #
+                #     if list(vec_dir_dict.keys()).index(key) in list(flips.keys()) and flips[
+                #         list(vec_dir_dict.keys()).index(key)]:
+                #         y = -y
+                #         x = -x
+                #     proj = (current_center[0] + int(x), current_center[1] + int(y))
+                #     # print("B======D", frameId, int(x), int(y))
+                #     # Отображаем
+                #     cv2.circle(frame, proj, 1, (127, 127, 0), -1)
+
                 #Считаем значения, на которых бы лежал конец вектора
+
                 y = value * math.cos(math.radians(key))
                 x = value * math.sin(math.radians(key))
                 #
@@ -200,15 +220,15 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
 
                 #1 вектор, отложенный из центра
                 proj = (current_center[0] + int(x), current_center[1] + int(y))
-                print("B======D", frameId, int(x), int(y))
+                #print("B======D", frameId, int(x), int(y))
                 #Отображаем
-                cv2.circle(frame, proj, 5, (0, 127, 0), -1)
+                cv2.circle(frame, proj, 1, (0, 127, 0), -1)
 
                 #Ищем самый близкий к 1 вектору синий пиксель
                 distances = np.sqrt((nonzero[:, :, 0] - proj[0]) ** 2 + (nonzero[:, :, 1] - proj[1]) ** 2)
                 nearest_index = np.argmin(distances)
                 #отображаем
-                cv2.circle(frame, nonzero[nearest_index][0], 5, (0, 127, 127), -1)
+                cv2.circle(frame, nonzero[nearest_index][0], 2, (0, 127, 127), -1)
 
                 #2ой вектор - из центра через самый близкий к 1 вектору синий пиксель (определяем угол)
                 x1 = abs(current_center[0] - nonzero[nearest_index][0][0])
@@ -216,8 +236,10 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
 
                 vector1 = vec.Vector2(x1, y1)
                 #Теперь увеличиваем длину 2 вектора до длины оригинального вектора
-                vector1.x *= x1 / abs(value)
-                vector1.y *= y1 / abs(value)
+                if x1 != 0:
+                    vector1.x *= abs(value) / x1
+                if y1 != 0:
+                    vector1.y *= abs(value) / y1
 
                 #print("::::::", vector1.x, vector1.y, x, value)
 
@@ -225,7 +247,14 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
                 proj1 = (
                     current_center[0] + int(vector1.x * (x / abs(x))),
                     current_center[1] + int(vector1.y * (y / abs(y))))
-                cv2.circle(frame, proj1, 5, (0, 0, 255), -1)
+                cv2.circle(frame, proj1, 2, (0, 0, 255), -1)
+
+                # if abs(dist((current_center[0], current_center[1]), proj1) - value) >= 10:
+                #     proj15 = (
+                #         current_center[0] + int(vector1.x * (x / abs(x)) * 0.5),
+                #         current_center[1] + int(vector1.y * (y / abs(y)) * 0.5))
+                #     cv2.circle(frame, proj15, 2, (255, 0, 255), -1)
+                #     proj1 = proj15
 
                 #Теперь ищем ближайший к концу 2 вектора синий пиксель
                 distances = np.sqrt((nonzero[:, :, 0] - proj1[0]) ** 2 + (nonzero[:, :, 1] - proj1[1]) ** 2)
@@ -234,12 +263,29 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
                 #Отображаем
                 true_point = nonzero[nearest_index_1][0]
                 #Погрешность в <10 пикселей
-                if dist(nonzero[nearest_index_1][0], proj1) <= 10:
+                if dist(nonzero[nearest_index_1][0], proj1) <= 1:
                     true_point = proj1
-                cv2.circle(frame, true_point, 5, (255, 255, 255), -1)
+                cv2.circle(frame, true_point, 2, (255, 255, 255), -1)
 
+                vector2 = vec.Vector2(
+                    int(vector1.x * (x / abs(x))),
+                    int(vector1.y * (y / abs(y))))
+
+                vp = vec.Vector2(vector2.x * key, vector2.y * key)
+
+                # idea - remember last vector, compare and minusovat' ya v rot yebal
+                if prevpair is not None:
+                    l = vec.Vector2(x - prevpair[0], y - prevpair[1])
+                    # print("::: ", l.x, l.y)
+                    # l.x /= value
+                    # l.y /= value
+
+                    #cv2.circle(frame, (int(true_point[0] + l.x), int(true_point[1] + l.y)), 1, (255, 0, 255), -1)
+
+                prevpair = (x, y)
                 #Записываем в файл
                 f.write(str(true_point[0]) + "," + str(true_point[1]) + ",")
+
             f.write(str(frameId) + "\n")
             if show_video:
                 cv2.imshow("frame", frame)
@@ -267,4 +313,4 @@ def track_video(filename: str, output_name: str, show_video: bool, place_points_
     return True
 
 
-track_video("bend_4.gif.mp4", "nigger", True, points_count=3)
+#track_video("bend_4.gif.mp4", "nigger", True, points_count=3)

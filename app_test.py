@@ -1,7 +1,9 @@
+import csv
 import re
 
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import ttk
 import cv2
 from PIL import Image, ImageTk
 
@@ -88,7 +90,7 @@ def display_image(rt, file_path):
         status_label.config(text=f"Загруженный файл: {file_path}")
         opflow.track_video(file_path, entry_field.get(), bool(enabled.get()), True, int(int(point_count_e.get())))
         app1.open_video_path(str(entry_field.get() + ".mp4"))
-        display_analytix(rt, str(entry_field.get() + ".txt"))
+        display_analytix(rt, str(entry_field.get() + ".csv"))
     elif s != '':
         status_label.config(text=f"Пожалуйста, введите количество точек, используя ТОЛЬКО цифры")
 
@@ -101,13 +103,21 @@ def toggle():
 
 
 def display_analytix(rt, filename):
-    configfile = tk.Text(rt, wrap=tk.WORD, width=175, height=20)
-    print("entered::1")
-    with open(filename, 'r') as f:
-        print("::::::1")
-        configfile.insert(tk.INSERT, f.read())
-    configfile.grid_configure(row=2, column=0, columnspan=2)
-    configfile.grid()
+    with open(filename, 'r', newline='') as file:
+        csv_reader = csv.reader(file)
+        header = next(csv_reader)  # Read the header row
+        tree.delete(*tree.get_children())  # Clear the current data
+
+        tree["columns"] = header
+        for col in header:
+            tree.heading(col, text=col)
+            tree.column(col, width=100)
+
+        for row in csv_reader:
+            tree.insert("", "end", values=row)
+
+    tree.grid_configure(row=2, column=0, columnspan=2)
+    tree.grid()
 
 
 root = tk.Tk()
@@ -139,6 +149,9 @@ auto_points = tk.IntVar()
 auto_points_checkbutton = tk.Checkbutton(text="Автоматическая расстановка точек", variable=auto_points, command=toggle)
 #auto_points_checkbutton.grid_configure(row=2, column=0)
 #auto_points_checkbutton.grid()
+
+tree = ttk.Treeview(root, show="headings")
+#tree.pack(padx=20, pady=20, fill="both", expand=True)
 
 status_label = tk.Label(root, text="", padx=20, pady=10)
 status_label.grid()
